@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NewDirective } from './newDirective';
-import { ThirdDirective } from './thirdDirective';
+import { NewDirective } from './directives/newDirective';
+import { ThirdDirective } from './directives/thirdDirective';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
