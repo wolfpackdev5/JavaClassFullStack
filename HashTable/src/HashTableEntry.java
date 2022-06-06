@@ -11,6 +11,10 @@ public class HashTableEntry<K, V> implements Map.Entry<K, V> {
 		this.available = false;
 	}
 	
+	
+	public HashTableEntry() {
+	}
+	
 	public boolean isAvailable() {
 		return this.available;
 	}
