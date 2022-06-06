@@ -4,12 +4,16 @@ import { NewDirective } from './directives/newDirective';
 import { ThirdDirective } from './directives/thirdDirective';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FahrenheitPipe } from './app.fahrenheitPipe';
+import { PhoneNumber } from './app.phoneNumber';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewDirective,
-    ThirdDirective
+    ThirdDirective,
+    FahrenheitPipe,
+    PhoneNumber
   ],
   imports: [
     BrowserModule,
