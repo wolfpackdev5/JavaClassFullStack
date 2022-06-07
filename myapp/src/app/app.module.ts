@@ -1,23 +1,24 @@
+import { BrowserModule } from '@angular/platform-browser'; 
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { NewDirective } from './directives/newDirective';
-import { ThirdDirective } from './directives/thirdDirective';
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { FahrenheitPipe } from './app.fahrenheitPipe';
-import { PhoneNumber } from './app.phoneNumber';
+import { PageAComponent } from './app.page-a';
+import { PageBComponent } from './app.page-b';
+import { routing } from './app.routing';
+import { PageDefault } from './app.pagedefault';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewDirective,
-    ThirdDirective,
-    FahrenheitPipe,
-    PhoneNumber
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
+    PageAComponent,
+    PageBComponent,
+    PageDefault
+    
+], 
+imports: [
+BrowserModule,
+FormsModule, 
+ routing
   ],
   providers: [],
   bootstrap: [AppComponent]

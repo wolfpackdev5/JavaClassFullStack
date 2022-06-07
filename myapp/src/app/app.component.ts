@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
-import { FahrenheitPipe } from './app.fahrenheitPipe';
-import { PhoneNumber } from './app.phoneNumber';
 @Component({
     selector: 'app-root',
-    template: `<p>{{phone | phoneNumber }}</p>`,
+    template: `<h1>This is the header</h1>
+    <nav>
+    <a routerLink="/page-a" routerLinkActive="active">A</a>
+    <a routerLink="/page-b" routerLinkActive="active">B</a>
+  </nav>
+  <router-outlet></router-outlet>
+  `,
 })
 export class AppComponent {
-
-  phone: number;
-  constructor() {
-    this.phone = 6049222222;
-  }
-    
+  
+ 
+ 
 }
