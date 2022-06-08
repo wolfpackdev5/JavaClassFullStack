@@ -1,13 +1,17 @@
 import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+
 @SuppressWarnings("rawtypes")
-public class LinearProbingHashTable implements GradableMap{
+public class LinearProbingHashTable<K, V> implements GradableMap{
 	private HashTableEntry[] entries;
 	private double max;
 	private int size;
@@ -71,7 +75,6 @@ public class LinearProbingHashTable implements GradableMap{
 	
 	@Override
 	public boolean containsKey(Object key) {
-		//find out if entries contains a key value pair with this key
 		List<HashTableEntry> hashList = new ArrayList<>(Arrays.asList(entries));
 		return hashList.contains(key);
 	}
@@ -79,7 +82,8 @@ public class LinearProbingHashTable implements GradableMap{
 	@Override
 	public Set entrySet() {
 		Set<HashTableEntry> hashSet = new HashSet<HashTableEntry>();
-		hashSet.addAll(Arrays.asList(entries));
+		hashSet.addAll(Arrays
+				.asList(entries));
 		return hashSet;
 	}
 	
@@ -93,60 +97,100 @@ public class LinearProbingHashTable implements GradableMap{
 
 	@Override
 	public Object get(Object key) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object put(Object key, Object value) {
 		
-	}
-
-	@Override
-	public Object remove(Object key) {
-		//find the hashtable entry with the associated key 
-		//set the available value to true 
-	}
-
-	@Override
-	public void putAll(Map m) {
-		// TODO Auto-generated method stub
+		Object value = null;
 		
-	}
+		List<HashTableEntry> hashList = new ArrayList<>(Arrays.asList(entries));
+		if(!hashList.contains(key)) {
+			throw new NullPointerException();
+		} else {
 
-	@Override
-	public Set keySet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public Collection values() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	@Override
-	public HashTableEntry[] getArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setArray(HashTableEntry[] array) {
-		// TODO Auto-generated method stub
-		
+		for(int x = 0; x < entries.length; x++) {
+			
+			if(entries[x].getKey() == key) {
+				value = entries[x].getValue();
+			} 
+		}
+		}
+		return value;
 	}
 
 	@Override
 	public void setSize(int size) {
 		this.size = size;
-	}*/
-	
-	public static void main(String[] args) {
-		
 	}
+	
+	@Override
+	public Object put(Object key, Object value) {
+		int hash = Math.abs(key.hashCode() % 11);
+		HashTableEntry putHash = new HashTableEntry(key, value);
+		Object ifNeeded = null;
+		if(entries[hash].getKey() == null && hash < max * size) {
+			entries[hash] = putHash;
+		} if(entries[hash].getKey() != null && hash < max * size) {
+			ifNeeded = entries[hash].getValue();
+			entries[hash] = putHash;
+		} else {
+			//add in hashtable resizing
+			throw new NullPointerException();
+		}
+		return ifNeeded;
+	}
+
+	
+
+	@Override
+	public Object remove(Object key) {
+		Object toRemove = null;
+		//find object at hashed index
+		int hash = Math.abs(key.hashCode() % 11);
+		if(entries[hash] == null) {
+			throw new NullPointerException();
+		} if(entries[hash] != null && entries[hash].getKey() != null) {
+			toRemove = entries[hash].getValue();
+		}
+		
+		return toRemove;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void putAll(Map map) {
+		Iterator<Map.Entry<K, V>> iterator = map.entrySet().iterator();
+		while(iterator.hasNext()) {
+			Map.Entry<K, V> entry = iterator.next();
+			//HashTableEntry<K, V> iHash = new HashTableEntry<>(entry.getKey(), entry.getValue());
+			put(entry.getKey(), entry.getValue());
+		}
+	}
+
+	@Override
+	public Set keySet() {
+		Set<Object> hashSet = new HashSet<Object>();
+		for(HashTableEntry entry : entries) {
+			hashSet.add(entry.getKey());
+		}
+		return hashSet;
+	}
+
+	@Override
+	public Collection values() {
+		Collection<HashTableEntry> collection = new ArrayList<HashTableEntry>(Arrays.asList(entries));
+		return collection;
+	}
+
+	@Override
+	public HashTableEntry[] getArray() {
+		// TODO Auto-generated method stub
+		return this.entries;
+	}
+
+	@Override
+	public void setArray(HashTableEntry[] array) {
+		this.entries = array;
+	}
+	
+	
 
 }

@@ -1,3 +1,4 @@
+import java.lang.reflect.Type;
 import java.util.Map;
 
 public class HashTableEntry<K, V> implements Map.Entry<K, V> {
@@ -55,15 +56,9 @@ public class HashTableEntry<K, V> implements Map.Entry<K, V> {
 	}
 	
 	public int hashCode() {
-		String value = this.value.toString();
-		int hash = 0;
-		for(int x = 0; x < value.length(); x++) {
-			hash += x * 31^(value.length() - 1);
-		}
-		return hash;
+		int hash = Math.abs(this.getKey().hashCode() % 11);
 		
+		return hash;
 	}
 	
-	
-
 }
