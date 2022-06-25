@@ -70,25 +70,6 @@ public class BasicTraining {
 		}
 		
 		
-		public static void main(String[] main) {
-			int[] quick = {5, 10, 22, 14, 0, 4, 3};
-			BasicTraining qs = new BasicTraining(quick);
-			
-			System.out.println(qs.getPivot());
-			
-			/*for(int x = 0; x < qs.quick.length; x++) {
-				System.out.println(qs.quick[x]);
-			}*/
-			
-			qs.sortFirstHalf();
-			qs.sortSecondHalf();
-			qs.finalSort();
-			
-			for(int x = 0; x < qs.quick.length; x++) {
-				System.out.print(qs.quick[x] + " ");
-			}
-			
-			
-		}
+		
 	
 }
