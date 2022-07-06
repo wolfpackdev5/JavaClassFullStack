@@ -1,0 +1,27 @@
+h1 {
+    text-align: center;
+}
+form {
+    border: 1px dotted cyan;
+    background-color: cyan;
+    padding: 15px;
+    margin: auto;
+}
+form input{
+   margin: 5px 5px;
+
+}
+.button {
+    display: grid;
+    margin-top: 15px;
+    
+}
+.button button {
+    width: 75px;
+    height: 25px;
+    margin: auto;
+}
+
+#story-container {
+    display: none;
+}
